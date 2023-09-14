@@ -158,7 +158,6 @@ class Hospital {
           break;
         case 5:
           this.listarPacientes();
-          console.clear();
           break;
         case 6:
           console.log("Saindo do Cadastro de Hospital...");

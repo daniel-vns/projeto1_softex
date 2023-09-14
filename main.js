@@ -1,5 +1,6 @@
 import readline from 'readline-sync';
 import clear from 'clear';
+const sqlite3 = require('sqlite3').verbose();
 
 class Paciente {
   constructor(nome, cpf, idade, consulta) {
@@ -11,9 +12,24 @@ class Paciente {
 }
 
 class Hospital {
-  constructor() {
-    this.pacientes = [];
-  }
+    constructor() {
+      this.db = new sqlite3.Database('hospital.db');
+      this.pacientes = [];
+
+      // Crie a tabela de pacientes no banco de dados se ela não existir
+      this.db.serialize(() => {
+        this.db.run(`CREATE TABLE IF NOT EXISTS pacientes (
+          id INTEGER PRIMARY KEY,
+          nome TEXT,
+          cpf INTEGER,
+          idade INTEGER,
+          consulta TEXT
+        )`);
+      });
+    }
+  
+    // ... o restante do seu código
+  
 
   cadastrarPaciente() {
     const nome = readline.question("Digite o nome do paciente: ");
@@ -171,3 +187,8 @@ class Hospital {
 
 const hospitalSoftex = new Hospital();
 hospitalSoftex.iniciar();
+
+// Feche o banco de dados quando não for mais necessário
+encerrar() {
+    this.db.close();
+  }

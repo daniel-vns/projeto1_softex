@@ -12,8 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.8.7",
     "clear": "^0.1.0",
     "readline-sync": "^1.4.10",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "tsc-node": "^0.0.3",
+    "typescript": "^5.2.2"
   }
 }
